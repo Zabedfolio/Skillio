@@ -1,3 +1,10 @@
+export type Role = 'student' | 'admin';
+
+export interface NavItem {
+  label: string;
+  href: string;
+}
+
 export interface Course {
   _id: string;
   title: string;
@@ -29,4 +36,3 @@ export interface ApiResponse<T = unknown> {
   message?: string;
   data?: T;
 }
-
