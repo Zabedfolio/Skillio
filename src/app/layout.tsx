@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Navbar } from '@/components/navbar';
+import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
   title: 'Skillio | Learning Platform',
@@ -22,9 +23,10 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body>
+      <body className="min-h-screen flex flex-col justify-between">
         <Navbar />
-        {children}
+        <div className="flex-1">{children}</div>
+        <Footer />
       </body>
     </html>
   );
