@@ -3,6 +3,7 @@
 import { useSyncExternalStore, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession, signOut } from '@/lib/auth-client';
+import toast from 'react-hot-toast';
 
 export interface AuthStatus {
   isAuthenticated: boolean;
@@ -50,6 +51,7 @@ export function useAuthStatus(): AuthStatus {
     } catch (err) {
       console.error('Sign out error:', err);
     }
+    toast.success('Signed out successfully.');
     router.push('/courses');
     router.refresh();
   }, [router]);

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 /**
  * Component: FooterNewsletter
@@ -16,6 +17,7 @@ export default function FooterNewsletter() {
 
     // Simulate successful subscription
     setIsSubscribed(true);
+    toast.success('Thank you for subscribing to Skillio updates!');
     setEmail('');
   };
 

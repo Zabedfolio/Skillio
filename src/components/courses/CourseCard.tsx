@@ -39,9 +39,16 @@ export default function CourseCard({ course }: CourseCardProps) {
 
         {/* Pinned Bottom Row: Price + Action CTA */}
         <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-          <span className="text-base font-extrabold text-primary">
-            {formatPrice(course.price)}
-          </span>
+          <div className="flex items-baseline gap-2">
+            <span className="text-base font-extrabold text-primary">
+              {formatPrice(course.price)}
+            </span>
+            {typeof course.lectureCount === 'number' && (
+              <span className="text-xs text-slate-500 font-medium">
+                • {course.lectureCount} {course.lectureCount === 1 ? 'lecture' : 'lectures'}
+              </span>
+            )}
+          </div>
 
           <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary group-hover:text-primary-dark transition-colors">
             <span>View course</span>

@@ -11,6 +11,7 @@ export interface Course {
   description: string;
   price: number;
   thumbnailUrl: string;
+  lectureCount?: number;
   createdAt?: string;
   updatedAt?: string;
 }
@@ -25,8 +26,17 @@ export interface Lecture {
   updatedAt?: string;
 }
 
+export interface User {
+  _id: string;
+  name?: string;
+  email: string;
+  role: Role;
+  image?: string;
+}
+
 export interface Admin {
   _id: string;
+  name?: string;
   email: string;
   role: string;
 }

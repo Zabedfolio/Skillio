@@ -14,9 +14,23 @@ export function useRole(): {
 } {
   const { data: session, isPending } = useSession();
 
-  // Extract role from session user; defaults to 'student'
+  // Extract role from session user or stored admin credentials; defaults to 'student'
   const userRole = (session?.user as { role?: string } | undefined)?.role;
-  const role: Role = userRole === 'admin' ? 'admin' : 'student';
+  let storedAdminRole: string | undefined;
+
+  if (typeof window !== 'undefined') {
+    try {
+      const stored = localStorage.getItem('admin');
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        storedAdminRole = parsed?.role;
+      }
+    } catch {
+      // ignore parsing error
+    }
+  }
+
+  const role: Role = userRole === 'admin' || storedAdminRole === 'admin' ? 'admin' : 'student';
 
   return { role, isPending };
 }
