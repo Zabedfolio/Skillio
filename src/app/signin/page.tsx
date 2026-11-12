@@ -78,9 +78,9 @@ export default function SignInPage() {
         {/* Header with Logo */}
         <div className="text-center mb-8">
           <Link
-            href="/"
+            href="/courses"
             className="inline-flex items-center justify-center mb-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
-            aria-label="Skillio Home"
+            aria-label="Skillio"
           >
             <Image
               src="/skillio.png"

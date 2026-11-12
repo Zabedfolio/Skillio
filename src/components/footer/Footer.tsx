@@ -30,9 +30,9 @@ export default function Footer() {
               {/* Brand Logo & Tagline */}
               <div className="flex items-start gap-3 mb-4">
                 <Link
-                  href="/"
+                  href="/courses"
                   className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
-                  aria-label="Skillio Home"
+                  aria-label="Skillio"
                 >
                   <Image
                     src="/skillio.png"
@@ -145,15 +145,15 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link
-                      href="/about"
+                      href="/courses"
                       className="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
                     >
-                      Why Choose Us
+                      Explore Catalog
                     </Link>
                   </li>
                   <li>
                     <Link
-                      href="/about"
+                      href="/courses"
                       className="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
                     >
                       Student Reviews
@@ -169,10 +169,10 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link
-                      href="/"
+                      href="/courses"
                       className="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
                     >
-                      Our Heritage
+                      Learning Roadmap
                     </Link>
                   </li>
                 </ul>
@@ -198,7 +198,7 @@ export default function Footer() {
                 <ul className="flex flex-col gap-2.5 text-xs sm:text-sm">
                   <li>
                     <Link
-                      href="/about"
+                      href="/courses"
                       className="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
                     >
                       Terms & Refund Policy
@@ -214,7 +214,7 @@ export default function Footer() {
                   </li>
                   <li>
                     <Link
-                      href="/about"
+                      href="/courses"
                       className="text-slate-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
                     >
                       Frequently Asked Questions

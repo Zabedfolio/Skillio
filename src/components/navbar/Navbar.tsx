@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import Logo from './Logo';
 import NavLink from './NavLink';
 import AuthActions from './AuthActions';
-import RoleSwitch from './RoleSwitch';
 import HamburgerButton from './HamburgerButton';
 import MobileMenu from './MobileMenu';
 import { useAuthStatus } from '@/hooks/useAuthStatus';
@@ -113,7 +112,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Zone 3 (Right): Auth Actions and Segmented RoleSwitch */}
+        {/* Zone 3 (Right): Auth Actions */}
         <div className="hidden lg:flex items-center gap-3 shrink-0">
           <AuthActions
             role={role}
@@ -121,8 +120,6 @@ export default function Navbar() {
             isReady={isReady}
             onLogout={logout}
           />
-          <div className="h-4 w-px bg-slate-200/80" aria-hidden="true" />
-          <RoleSwitch />
         </div>
 
         {/* Mobile/Tablet (< lg): Hamburger Button */}
@@ -137,15 +134,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Panel */}
       <MobileMenu id="mobile-menu" isOpen={isOpen} onClose={closeMenu}>
-        {/* Section 1: Role Toggle */}
-        <div className="flex flex-col gap-1.5">
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-1">
-            Viewing Portal
-          </span>
-          <RoleSwitch isMobile onSelect={closeMenu} />
-        </div>
-
-        {/* Section 2: Nav Items */}
+        {/* Nav Items */}
         <div className="flex flex-col gap-1 py-1">
           {currentNavItems.map((item) => (
             <NavLink
@@ -158,7 +147,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Section 3: Auth Actions */}
+        {/* Auth Actions */}
         <div className="pt-2 border-t border-slate-100">
           <AuthActions
             role={role}

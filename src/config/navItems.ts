@@ -5,9 +5,7 @@ import { NavItem } from '@/types';
  * Rendered when current path does not begin with "/admin".
  */
 export const studentNavItems: readonly NavItem[] = [
-  { label: 'Home', href: '/' },
   { label: 'Courses', href: '/courses' },
-  { label: 'About', href: '/about' },
 ] as const;
 
 /**

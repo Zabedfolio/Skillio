@@ -1,21 +1,22 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { useSession } from '@/lib/auth-client';
 import { Role } from '@/types';
 
 /**
  * Hook: useRole
- * Derives the active user role dynamically from the current URL pathname.
- *
- * Rule: Paths starting with "/admin" operate under the "admin" role context;
- * all other paths default to the "student" role context.
- *
- * No role state is stored in React state or localStorage.
+ * Derives the active user role dynamically from the logged-in user using Better Auth's useSession().
+ * The default role is "student" whenever no user is logged in or the user does not have an admin role.
  */
-export function useRole(): { role: Role } {
-  const pathname = usePathname();
-  const role: Role = pathname?.startsWith('/admin') ? 'admin' : 'student';
+export function useRole(): {
+  role: Role;
+  isPending: boolean;
+} {
+  const { data: session, isPending } = useSession();
 
-  return { role };
+  // Extract role from session user; defaults to 'student'
+  const userRole = (session?.user as { role?: string } | undefined)?.role;
+  const role: Role = userRole === 'admin' ? 'admin' : 'student';
+
+  return { role, isPending };
 }
-

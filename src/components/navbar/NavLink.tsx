@@ -14,7 +14,7 @@ export interface NavLinkProps {
 /**
  * Helper to determine active state with exact/prefix matching rules:
  * - Exact match for "/" and "/admin"
- * - Prefix match for rest ("/courses", "/about", "/admin/courses/new")
+ * - Prefix match for rest ("/courses", "/admin/courses/new")
  * - "/admin/courses/new" ("Add Course") takes precedence over "/admin/courses" ("Manage Courses")
  */
 function isLinkActive(href: string, pathname: string): boolean {

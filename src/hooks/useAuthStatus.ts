@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession, signOut } from '@/lib/auth-client';
 
 export interface AuthStatus {
   isAuthenticated: boolean;
@@ -23,28 +24,14 @@ function getServerSnapshotToken(): string | null {
   return null;
 }
 
-// No-op subscriber for client hydration readiness
-const emptySubscribe = () => () => {};
-
 /**
- * Hook: useAuthStatus (Placeholder)
- *
- * NOTE: This is a placeholder hook for initial UI development.
- * It uses useSyncExternalStore to coordinate client hydration readiness
- * and token synchronization across tabs without triggering cascading render
- * warnings or hydration mismatches.
- *
- * This hook will be replaced by the real AuthContext later.
+ * Hook: useAuthStatus
+ * Coordinates client hydration readiness and authentication state
+ * across Better Auth session and localStorage tokens.
  */
 export function useAuthStatus(): AuthStatus {
   const router = useRouter();
-
-  // isReady is false during SSR & initial client hydration, true once mounted on client
-  const isReady = useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false
-  );
+  const { data: session, isPending } = useSession();
 
   const token = useSyncExternalStore(
     subscribeStorage,
@@ -52,12 +39,19 @@ export function useAuthStatus(): AuthStatus {
     getServerSnapshotToken
   );
 
-  const isAuthenticated = Boolean(token);
+  const isAuthenticated = Boolean(session?.user || token);
+  const isReady = !isPending;
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
     localStorage.removeItem('token');
     window.dispatchEvent(new Event('storage'));
-    router.push('/');
+    try {
+      await signOut();
+    } catch (err) {
+      console.error('Sign out error:', err);
+    }
+    router.push('/courses');
+    router.refresh();
   }, [router]);
 
   return {

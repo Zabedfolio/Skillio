@@ -14,10 +14,10 @@ interface LogoProps {
 export default function Logo({ className = '', onClick }: LogoProps) {
   return (
     <Link
-      href="/"
+      href="/courses"
       onClick={onClick}
       className={`inline-flex items-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md ${className}`}
-      aria-label="Skillio Home"
+      aria-label="Skillio"
     >
       <Image
         src="/skillio.png"
